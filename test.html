@@ -421,6 +421,21 @@ fullscreenToggleBtn.addEventListener('click', () => {
 </html>
 
 <script>
+     // 设置倒计时总时间（单位：毫秒）
+     const COUNTDOWN_DURATION = 1 * 60 * 60 * 1000; // 24 小时
+
+    function getRemainingTime(endTime) {
+        const now = new Date().getTime();
+        return Math.max(0, endTime - now);
+    }
+
+    function formatTime(ms) {
+        const totalSeconds = Math.floor(ms / 1000);
+        const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+        const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+        const seconds = String(totalSeconds % 60).padStart(2, '0');
+        return `${hours}:${minutes}:${seconds}`;
+    }
     // 添加弹窗控制逻辑
     document.addEventListener('DOMContentLoaded', function() {
         const popup = document.querySelector('.gift-popup');
@@ -444,39 +459,40 @@ fullscreenToggleBtn.addEventListener('click', () => {
             });
         });
 
-         // 设置倒计时总时长（单位：秒），这里以 24 分钟为例
-    let countdownSeconds = 1 * 60;
+        const displayElements = [
+            document.getElementById('timer'),
+            document.querySelector('.final-countdown')
+        ];
 
-// 获取两个需要更新的元素
-const popupTimer = document.getElementById('timer');
-const footerTimer = document.querySelector('.final-countdown');
+        let endTime = localStorage.getItem('countdownEndTime');
+        if (!endTime) {
+            // 第一次访问，设置结束时间
+            endTime = new Date().getTime() + COUNTDOWN_DURATION;
+            localStorage.setItem('countdownEndTime', endTime);
+        } else {
+            endTime = parseInt(endTime);
+        }
 
-function formatTime(seconds) {
-    const hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
-    const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
-    const secs = String(seconds % 60).padStart(2, '0');
-    return `${hrs}:${mins}:${secs}`;
-}
+        function updateCountdown() {
+            const remaining = getRemainingTime(endTime);
 
-function updateCountdown() {
-    if (countdownSeconds <= 0) {
-        popupTimer.textContent = "00:00:00";
-        footerTimer.textContent = "00:00:00";
-        clearInterval(timerInterval);
-        return;
-    }
+            const formatted = formatTime(remaining);
+            displayElements.forEach(el => {
+                if (el) el.textContent = formatted;
+            });
 
-    const formatted = formatTime(countdownSeconds);
-    popupTimer.textContent = formatted;
-    footerTimer.textContent = formatted;
+            if (remaining <= 0) {
+                clearInterval(timerInterval);
+                // 可选：倒计时结束后处理
+                // alert("Offer expired!");
+            }
+        }
 
-    countdownSeconds--;
-}
+        // 初始更新一次
+        updateCountdown();
 
-// 初始化显示
-updateCountdown();
-// 每秒更新一次
-const timerInterval = setInterval(updateCountdown, 1000);
+        // 每秒更新
+        const timerInterval = setInterval(updateCountdown, 1000);
     });
 </script>
 
