@@ -486,11 +486,12 @@ fullscreenToggleBtn.addEventListener('click', () => {
 </style>
 
 <!-- 引入Swiper JS -->
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="swiper.js"></script>
 
 <script>
     // 修改后的Swiper初始化
     const swiper = new Swiper('.swiper-container', {
+        cssMode: true,
         loop: true,
         slidesPerView: 1,
         spaceBetween: 20,
