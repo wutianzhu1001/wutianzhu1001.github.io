@@ -245,10 +245,11 @@
 <body>
     <!-- 首屏：视频背景 + 礼包弹窗 -->
     <section id="hero-section">
-        <video id="bg-video" autoplay muted loop>
-            <source src="source/ink.mp4" type="video/mp4">
-            <!-- 实际使用时替换为真实视频链接 -->
+        <video autoplay muted playsinline loop preload="auto" id="bg-video">
+          <source src="source/ink.mp4" type="video/mp4">
+          您的浏览器不支持视频播放。
         </video>
+
 <div class="video-controls">
   <button id="mute-btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/></svg></button>
   <button id="fullscreen-toggle-btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button>
