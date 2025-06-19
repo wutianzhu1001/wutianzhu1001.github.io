@@ -240,6 +240,33 @@
             align-items: center;
             justify-content: center;
         }
+        
+.video-controls {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.video-controls button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  color: white;
+
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
     </style>
 </head>
 <body>
@@ -257,7 +284,7 @@
           您的浏览器不支持视频播放。
         </video>
 
-<div class="video-controls">
+<div class="video-controls" >
   <button id="mute-btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg></button>
   <button id="fullscreen-toggle-btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button>
 </div>
@@ -340,35 +367,6 @@
         </div>
      
     </section>
-
-    <style>
-.video-controls {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  display: flex;
-  gap: 10px;
-}
-
-.video-controls button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  background-color: rgba(0, 0, 0, 0.7);
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  color: white;
-
-  padding: 5px 10px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-</style>
 <script>
     // 判断是否为苹果手机（iPhone、iPad、iPod）
   function isAppleMobileDevice() {
@@ -418,19 +416,6 @@ fullscreenToggleBtn.addEventListener('click', () => {
     }
   }
 });
-
-// 倒计时脚本（示例）
-        function updateTimer() {
-            const timer = document.getElementById('timer');
-            // 实际应计算真实倒计时
-            timer.textContent = "23:45:18"; 
-        }
-        setInterval(updateTimer, 1000);
-        
-        // 点击事件绑定
-        document.querySelector('.claim-btn').addEventListener('click', function() {
-            document.querySelector('.contact-bar').scrollIntoView({behavior: 'smooth'});
-        });
     </script>
 </body>
 </html>
@@ -458,6 +443,40 @@ fullscreenToggleBtn.addEventListener('click', () => {
                 });
             });
         });
+
+         // 设置倒计时总时长（单位：秒），这里以 24 分钟为例
+    let countdownSeconds = 1 * 60;
+
+// 获取两个需要更新的元素
+const popupTimer = document.getElementById('timer');
+const footerTimer = document.querySelector('.final-countdown');
+
+function formatTime(seconds) {
+    const hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
+    const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+    const secs = String(seconds % 60).padStart(2, '0');
+    return `${hrs}:${mins}:${secs}`;
+}
+
+function updateCountdown() {
+    if (countdownSeconds <= 0) {
+        popupTimer.textContent = "00:00:00";
+        footerTimer.textContent = "00:00:00";
+        clearInterval(timerInterval);
+        return;
+    }
+
+    const formatted = formatTime(countdownSeconds);
+    popupTimer.textContent = formatted;
+    footerTimer.textContent = formatted;
+
+    countdownSeconds--;
+}
+
+// 初始化显示
+updateCountdown();
+// 每秒更新一次
+const timerInterval = setInterval(updateCountdown, 1000);
     });
 </script>
 
