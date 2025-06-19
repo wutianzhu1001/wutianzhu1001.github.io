@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Promotion</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* 第一板块 - 响应式修改 */
+        .section-1 {
+            position: relative;
+            height: 100vh;
+            background: url('c:/Users/Administrator/Desktop/test/source/2.png') no-repeat center center;
+            background-size: 100% auto; /* 修改为宽度100%自适应 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .offer-text {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .countdown {
+            font-size: clamp(1rem, 4vw, 1.8rem);
+            margin-bottom: 20px;
+        }
+        
+        /* 第二板块 - 响应式修改 */
+        .section-2 {
+            padding: 30px 0;
+            background: #f0f0f0;
+        }
+        
+        .swiper-container {
+            width: 100%;
+            height: auto;
+            min-height: 250px;
+            padding-bottom: 30px;
+        }
+        
+        /* 第三板块 - 响应式修改 */
+        .section-3 {
+            padding: 30px 20px;
+            background: #222;
+            color: white;
+            text-align: center;
+        }
+        
+        .last-chance {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            color: #ff0000;
+            margin-bottom: 15px;
+        }
+        
+        .final-countdown {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 20px;
+            color: #ff9900;
+        }
+        
+        .players-count {
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            margin-top: 20px;
+        }
+        
+        /* 按钮响应式 */
+        .btn {
+            padding: 12px 30px;
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            background: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* 添加媒体查询 */
+        @media (max-width: 480px) {
+            .swiper-button-next, 
+            .swiper-button-prev {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 第一板块 -->
+    <section class="section-1">
+        <h1 class="offer-text">🔥 FREE $388 DELUXE PACK!</h1>
+        <p class="offer-text"> Epic Hero + Epic gear + 5K diamond</p>
+        <div class="countdown">⏳ OFFER ENDS IN: <span id="countdown-1">23:59:59</span></div>
+        <button class="btn">👇 GET NOW</button>
+    </section>
+    
+    <!-- 第二板块 -->
+    <section class="section-2">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <!-- 这里添加你的图片和视频 -->
+                <div class="swiper-slide">
+                    <img src="c:/Users/Administrator/Desktop/test/source/1.png" alt="Game Feature 1">
+                </div>
+                <div class="swiper-slide">
+                    <video autoplay loop muted>
+                        <source src="c:/Users/Administrator/Desktop/test/source/ink.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <!-- 添加更多幻灯片 -->
+            </div>
+
+        </div>
+    </section>
+    
+    <!-- 第三板块 -->
+    <section class="section-3">
+        <h2 class="last-chance">⚠ LAST CHANCE!</h2>
+        <p>Your $388 Pack expires in:</p>
+        <div class="final-countdown" id="countdown-2">00:12:59</div>
+        <button class="btn btn-fire">🔥 GET NOW</button>
+        <p class="players-count">📢 5.6 Million Players Battling for Dominance — Join the Fight Now!</p>
+    </section>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <style>
+        /* 新增图片压缩和响应式样式 */
+        .swiper-slide img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+        
+        .swiper-slide video {
+            width: 100%;
+            height: auto;
+            max-height: 60vh;
+            object-fit: contain;
+        }
+    
+        /* 新增媒体查询优化小屏幕 */
+        @media (max-width: 768px) {
+            .swiper-slide {
+                padding: 10px;
+                box-sizing: border-box;
+            }
+            
+            .swiper-slide img, 
+            .swiper-slide video {
+                max-height: 50vh;
+            }
+        }
+    
+        @media (max-width: 480px) {
+            .swiper-slide img, 
+            .swiper-slide video {
+                max-height: 40vh;
+            }
+        }
+    
+        /* 新增全局响应式调整 */
+        html {
+            font-size: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            html {
+                font-size: 12px;
+            }
+        }
+    
+        /* 优化第一板块 */
+        .section-1 {
+            height: auto;
+        }
+    
+        /* 优化按钮间距 */
+        .btn {
+            margin: 10px 0;
+        }
+    
+        /* 优化滑动区域 */
+        .swiper-container {
+            height: auto;
+            max-height: 60vh;
+        }
+    
+        /* 更精细的媒体查询 */
+        @media (max-width: 375px) {
+            .offer-text {
+                margin-bottom: 10px;
+            }
+            
+            .countdown {
+                margin-bottom: 15px;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+            }
+        }
+    </style>
+
+    <script>
+        // 修改Swiper初始化配置
+        var swiper = new Swiper('.swiper-container', {
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            slidesPerView: 1,
+            spaceBetween: 10,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 5
+                },
+                768: {
+                    slidesPerView: 1.5,
+                    spaceBetween: 10
+                },
+                1024: {
+                    slidesPerView: 2,
+                    spaceBetween: 20
+                }
+            }
+        });
+         window.addEventListener('resize', function () {
+                <!-- // 确保第一板块高度正确 -->
+                document.querySelector('.section-1').style.height = window.innerHeight + 'px';
+            });
+    </script>
+    
+    <!-- /* 添加窗口大小变化监听 */ -->
+   
+
+    <style>
+        /* 修改滑动容器样式 */
+        .swiper-container {
+            width: 100%;
+            height: auto;
+            min-height: 250px;
+            max-height: 60vh;
+            overflow: hidden; /* 添加这行防止溢出 */
+        }
+    
+        /* 修改滑动项样式 */
+        .swiper-slide {
+            width: 100% !important; /* 确保宽度正确 */
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        /* 确保图片和视频填充但不溢出 */
+        .swiper-slide img,
+        .swiper-slide video {
+            width: 100%;
+            height: auto;
+            max-height: 60vh;
+            object-fit: contain;
+        }
+    </style>
+
+    <script>
+        // 修改Swiper配置
+        var swiper = new Swiper('.swiper-container', {
+            loop: false, // 关闭循环模式
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            slidesPerView: 1,
+            spaceBetween: 0, // 设置为0避免间隙
+            noSwiping: true, // 防止误滑动
+            resistanceRatio: 0, // 禁用弹性滑动
+            watchOverflow: true, // 内容不足时禁用滑动
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 0
+                },
+                768: {
+                    slidesPerView: 1,
+                    spaceBetween: 0
+                },
+                1024: {
+                    slidesPerView: 1,
+                    spaceBetween: 0
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+<script>
+    // 倒计时功能
+    function updateCountdown(elementId, hours, minutes, seconds) {
+        const countdownElement = document.getElementById(elementId);
+        let totalSeconds = hours * 3600 + minutes * 60 + seconds;
+        
+        const countdownInterval = setInterval(() => {
+            const hrs = Math.floor(totalSeconds / 3600);
+            const mins = Math.floor((totalSeconds % 3600) / 60);
+            const secs = totalSeconds % 60;
+            
+            countdownElement.textContent = 
+                `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            
+            if (totalSeconds <= 0) {
+                clearInterval(countdownInterval);
+                countdownElement.textContent = "00:00:00";
+                // 可以在这里添加倒计时结束后的回调
+            }
+            
+            totalSeconds--;
+        }, 1000);
+    }
+
+    // 页面加载后初始化倒计时
+    window.addEventListener('DOMContentLoaded', () => {
+        // 第一个倒计时23:59:59
+        updateCountdown('countdown-1', 23, 59, 59);
+        
+        // 第二个倒计时00:12:59
+        updateCountdown('countdown-2', 0, 12, 59);
+    });
+</script>
+
+<style>
+    /* 新增弹窗样式 */
+    .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0,0,0,0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 1000;
+        text-align: center;
+    }
+    
+    .popup-btn {
+        background: #ff0000;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-top: 15px;
+        cursor: pointer;
+    }
+</style>
+
+<!-- 修改后的第一板块 -->
+<section class="section-1">
+    <!-- 只保留背景图，移除其他内容 -->
+</section>
+
+<!-- 添加弹窗HTML -->
+<div class="popup" id="promoPopup">
+    <h2>🔥 LIMITED TIME OFFER!</h2>
+    <p>Get your $388 DELUXE PACK now!</p>
+    <button class="popup-btn">CLAIM NOW</button>
+</div>
+
+<script>
+    // 弹窗控制逻辑
+    document.addEventListener('DOMContentLoaded', function() {
+        // 检查是否已经显示过弹窗
+        if(!localStorage.getItem('popupShown')) {
+            setTimeout(function() {
+                document.getElementById('promoPopup').style.display = 'block';
+                localStorage.setItem('popupShown', 'true');
+            }, 3000); // 3秒后显示
+        }
+        
+        // 关闭弹窗
+        document.querySelector('.popup-btn').addEventListener('click', function() {
+            document.getElementById('promoPopup').style.display = 'none';
+        });
+    });
+</script>

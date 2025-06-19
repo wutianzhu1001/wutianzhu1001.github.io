@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Kingdom - $388 FREE Pack</title>
+    <style>
+        /* 基础样式 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Bebas Neue', 'Lato', sans-serif; 
+            background: #0A2463; 
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        /* 首屏视频区 */
+        #hero-section {
+            height: 100vh;
+            position: relative;
+        }
+        #bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        .video-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 2;
+        }
+        
+        /* 礼包弹窗 */
+        .gift-popup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85%;
+            background: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);
+            border: 3px solid #FFD700;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            z-index: 10;
+            box-shadow: 0 0 30px rgba(255,215,0,0.7);
+        }
+        .gift-title {
+            font-size: 2.2rem;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255,0,0,0.8);
+            margin-bottom: 15px;
+        }
+        .gift-items {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        .countdown {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #FF416C;
+        }
+        .claim-btn {
+            background: linear-gradient(to right, #FF416C, #FF4B2B);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 80%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* 游戏特色滑动区 */
+        .features-section {
+            padding: 40px 20px;
+            background: #1A365D;
+        }
+        .slider-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 15px;
+            padding: 10px 0 30px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .slider-container::-webkit-scrollbar { display: none; }
+        .feature-card {
+            scroll-snap-align: start;
+            min-width: 85%;
+            background: rgba(10, 36, 99, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid #4A00E0;
+        }
+        .feature-img {
+            width: 100%;
+            height: 200px;
+            background: #4A00E0;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        
+        /* 联系方式悬浮栏 */
+        .contact-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.8);
+            padding: 15px;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .contact-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #FFD700;
+        }
+        .contact-icons {
+            display: flex;
+            gap: 25px;
+        }
+        .icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .icon:hover { transform: scale(1.2); }
+        .whatsapp { background: #25D366; }
+        .facebook { background: #1877F2; }
+        .discord { background: #5865F2; }
+        
+        /* 尾屏倒计时 */
+        .footer-section {
+            padding: 100px 20px 80px;
+            text-align: center;
+            background: #0A2463;
+        }
+        .urgent-title {
+            font-size: 2rem;
+            color: #FF416C;
+            margin-bottom: 20px;
+        }
+        .final-countdown {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin: 20px 0;
+            text-shadow: 0 0 10px rgba(255,0,0,0.8);
+        }
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .store-btn {
+            width: 150px;
+            height: 50px;
+            background: #333;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- 首屏：视频背景 + 礼包弹窗 -->
+    <section id="hero-section">
+        <video id="bg-video" autoplay muted loop>
+            <source src="c:/Users/Administrator/Desktop/test/source/ink.mp4" type="video/mp4">
+            <!-- 实际使用时替换为真实视频链接 -->
+        </video>
+        <div class="video-overlay"></div>
+        
+        <div class="gift-popup">
+            <div class="gift-title">FREE $388 DELUXE PACK!</div>
+            <div class="gift-items">✅ Epic Hero + Dragon Egg + 50K Crystals</div>
+            <div class="countdown">OFFER ENDS IN: <span id="timer">23:59:59</span></div>
+            <button class="claim-btn">👇 CLAIM NOW</button>
+        </div>
+    </section>
+    
+    <!-- 第二屏：游戏特色滑动区 -->
+    <section class="features-section">
+        <div class="slider-container">
+            <div class="feature-card">
+                <div class="feature-img">⚔️</div>
+                <h3>英灵召唤</h3>
+                <p>统帅凯撒、武则天等传奇英雄</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-img">🐉</div>
+                <h3>巨龙觉醒</h3>
+                <p>驾驭七系元素龙扭转战局</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-img">🏰</div>
+                <h3>闪电攻城</h3>
+                <p>百城实时争夺无CD</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 固定底部联系栏 -->
+    <div class="contact-bar">
+        <div class="contact-title">MESSAGE US TO CLAIM:</div>
+        <div class="contact-icons">
+            <div class="icon whatsapp">💚</div>
+            <div class="icon facebook">💙</div>
+            <div class="icon discord">💜</div>
+        </div>
+    </div>
+    
+    <!-- 尾屏：二次召唤 -->
+    <section class="footer-section">
+        <div class="urgent-title">⚠️ LAST CHANCE!</div>
+        <div>Your $388 Pack expires in:</div>
+        <div class="final-countdown">00:09:31</div>
+        <button class="claim-btn">🔥 REQUEST GIFT NOW</button>
+        
+        <div style="margin-top: 40px; font-size: 1.2rem;">
+            160万玩家正在争夺霸权——立即参战！
+        </div>
+        <div class="store-buttons">
+            <div class="store-btn">Google Play</div>
+            <div class="store-btn">App Store</div>
+        </div>
+    </section>
+
+    <script>
+        // 倒计时脚本（示例）
+        function updateTimer() {
+            const timer = document.getElementById('timer');
+            // 实际应计算真实倒计时
+            timer.textContent = "23:45:18"; 
+        }
+        setInterval(updateTimer, 1000);
+        
+        // 点击事件绑定
+        document.querySelector('.claim-btn').addEventListener('click', function() {
+            document.querySelector('.contact-bar').scrollIntoView({behavior: 'smooth'});
+        });
+    </script>
+</body>
+</html>
