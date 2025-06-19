@@ -25,7 +25,14 @@
             background: #0A2463; 
             color: white;
             overflow-x: hidden;
+            background: var(--bg-gradient);
         }
+        .swiper-button-next,
+        .swiper-button-prev {
+        background: linear-gradient(to right, #66ccff, #99e6ff);
+        border-radius: 50%;
+        }
+
         
         /* 首屏视频区 */
             /* 修改视频容器样式 */
@@ -41,7 +48,7 @@
                 left: 0;
                 width: 100%;
                 object-fit: cover;
-                margin-top: 45px;
+                /* margin-top: 45px; */
             }
         
             /* 添加移动端优化 */
@@ -267,9 +274,33 @@
   border-radius: 3px;
   cursor: pointer;
 }
+.container {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px; /* 根据需要设置 */
+    /* background-image: url('source/bannerbg.png'); */
+    background-size: cover;
+    background-position: center;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;      /* 垂直居中 */
+    justify-content: center;  /* 水平居中 */
+}
+
+.container img {
+    width: 40%;     /* 你可以自定义大小 */
+    height: auto;
+}
+
     </style>
 </head>
 <body>
+    <div class="container">
+        <img src="source/banner.png" alt="Banner">
+    </div>
     <!-- 首屏：视频背景 + 礼包弹窗 -->
     <section id="hero-section">
          <video 
