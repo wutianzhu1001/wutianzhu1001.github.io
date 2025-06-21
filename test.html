@@ -9,8 +9,8 @@
         /* 关闭按钮样式 */
         .close-btn {
             position: absolute;
-            top: 10px;
-            right: 15px;
+            top: 0;
+            right: 5px;
             font-size: 2rem;
             color: white;
             cursor: pointer;
@@ -58,6 +58,8 @@
             width: 100%;
             object-fit: cover;
             /* margin-top: 45px; */
+             border: 2px solid #8E2DE2; /* 紫色边框 */
+             border-radius: 10px; /* 圆角边框 */
         }
 
         /* 添加移动端优化 */
@@ -69,25 +71,24 @@
         }
 
         /* 初始隐藏弹窗 */
-        .gift-popup {
+        /* .gift-popup {
             display: none;
-            /* 初始隐藏 */
             opacity: 0;
-            /* 初始透明 */
             position: fixed;
-            /* 修改为fixed，确保相对于视口定位 */
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            max-width: 630px;
             width: 85%;
             background: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);
             border: 3px solid #FFD700;
             border-radius: 20px;
-            padding: 20px;
+            padding: 20px 20px 20px 70px;
             text-align: center;
             z-index: 10;
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
-        }
+        } */
 
         @keyframes popIn {
             from {
@@ -110,6 +111,7 @@
 
         /* 礼包弹窗 */
         .gift-popup {
+            display: none;
             position: fixed;
             /* 修改为fixed，确保相对于视口定位 */
             top: 50%;
@@ -119,10 +121,11 @@
             background: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);
             border: 3px solid #FFD700;
             border-radius: 20px;
-            padding: 20px;
+             padding: 20px 20px 70px 20px;
             text-align: center;
             z-index: 10;
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+            max-width: 630px;
         }
 
         .gift-title {
@@ -160,6 +163,10 @@
             animation: pulse 2s infinite, flash 1.5s infinite;
             transition: transform 0.3s;
         }
+        .claim-btns{
+            padding: 0 30xp;
+        }
+
 
         @keyframes pulse {
             0% {
@@ -177,16 +184,15 @@
 
         /* 游戏特色滑动区 */
         .features-section {
-            padding: 20px 20px;
             background: #efefef;
+            margin-bottom: 10px;
         }
 
         .slider-container {
             display: flex;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
-            gap: 15px;
-            padding: 10px 0 10px;
+            padding: 0;
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
@@ -199,23 +205,22 @@
             scroll-snap-align: start;
             min-width: 85%;
             background: rgba(10, 36, 99, 0.7);
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 8px;
+            /* padding: 20px; */
             text-align: center;
             border: 2px solid #4A00E0;
         }
 
-        .feature-img {
+        /* .feature-img {
             width: 100%;
-            height: 200px;
+            height: 240px;
             background: #4A00E0;
             border-radius: 10px;
-            margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
-        }
+        } */
 
         /* 联系方式悬浮栏 */
         .contact-bar {
@@ -233,7 +238,7 @@
 
         .contact-title {
             font-size: 1.3rem;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             color: #FFD700;
         }
 
@@ -274,9 +279,9 @@
         .footer-section {
             padding-bottom: 120px;
             /* 增加底部内边距，避免被底部栏遮挡 */
-            padding: 10px 20px 80px;
             text-align: center;
             background: #efefef;
+            color: #333;
         }
 
         .urgent-title {
@@ -409,8 +414,7 @@ body {
 
 .hero-image-container {
         width: 60%;
-        margin-left: 20px;
-        margin-bottom: 30px;
+        margin-left: 10px;
         position: relative;
         z-index: 1;
     }
@@ -420,7 +424,34 @@ body {
         height: auto;
         display: block;
     }
-
+@keyframes randomJump {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg); 
+    }
+    25% { 
+        transform: translateY(-5px) rotate(-5deg); 
+    }
+    50% { 
+        transform: translateY(5px) rotate(5deg); 
+    }
+    75% { 
+        transform: translateY(-3px) rotate(-3deg); 
+    }
+}
+.floating-gift {
+  position: absolute; /* 如果第一模块是相对定位 */
+  bottom: 20px;
+  right: 40px;
+  font-size: 2.2em;
+  display: inline-block;
+  animation: randomJump 2s infinite ease-in-out;
+  cursor: pointer;
+  z-index: 100;
+}
+.in-popup{
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
     </style>
 </head>
 
@@ -436,11 +467,12 @@ body {
         <div class="ik-header__inner">
             <img src="source/logo.png" alt="Infinity Kingdom Logo" class="ik-header__logo">
         </div>
+        <span class="floating-gift" onclick="openGiftPopup()">🎁</span>
     </div>
-
+    
     <section id="hero-section">
         <div class="hero-image-container">
-            <img src="source/27.webp" alt="Hero Image">
+            <img src="source/text1.png" alt="Hero Image">
         </div>
         <video id="bg-video" autoplay muted loop playsinline preload="auto">
             <source src="source/ink.mp4" type="video/mp4">
@@ -464,11 +496,29 @@ body {
         <div class="video-overlay"></div>
 
         <div class="gift-popup">
-            <span class="close-btn" onclick="this.parentElement.style.display='none'">&times;</span>
+            <span class="close-btn" onclick="closeGiftPopup()">&times;</span>
             <div class="gift-title">FREE $388 DELUXE PACK!</div>
-            <div class="gift-items">✅ Epic Hero + Dragon Egg + 50K Crystals</div>
+            <div class="gift-items"><span style="font-size: 2em; display: inline-block;animation: randomJump 2s infinite ease-in-out;">🎁</span> Epic Hero + Epic gear </br>1500m Speedup + 2M Resources</br>5K diamond + Immortal 10-Pull</div>
             <div class="countdown">OFFER ENDS IN: <span id="timer">23:59:59</span></div>
-            <button class="claim-btn">👇 CLAIM NOW</button>
+            <!-- 礼包弹窗内容 -->
+            <!-- <div id="gift-popup" class="popup" style="display: none;"> -->
+                <!-- ...其他弹窗内容... -->
+            
+                <!-- 插入一份相同按钮 -->
+                <div class="contact-bar in-popup">
+                    <div class="contact-icons">
+                        <a href="https://wa.me/" class="icon whatsapp" target="_blank">
+                            <img src="source/whats.svg" alt="WhatsApp">
+                        </a>
+                        <a href="https://www.facebook.com/" class="icon facebook" target="_blank">
+                            <img src="source/fb.svg" alt="Facebook">
+                        </a>
+                        <a href="https://discord.com/" class="icon discord" target="_blank">
+                            <img src="source/dis.svg" alt="Discord">
+                        </a>
+                    </div>
+                </div>
+            <!-- </div> -->
         </div>
     </section>
 
@@ -477,35 +527,38 @@ body {
 
     <!-- 修改后的第二屏：游戏特色滑动区 -->
     <section class="features-section">
+        <div class="hero-image-container">
+            <img src="source/text2.png" alt="Hero Image">
+        </div>
         <div class="swiper-container slider-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide feature-card">
                     <div class="feature-img">
                         <img src="source/2.webp" alt="游戏特色1">
                     </div>
-                    <h3>英灵召唤</h3>
-                    <p>统帅凯撒、武则天等传奇英雄</p>
+                    <!-- <h3>Immortal Summon</h3> -->
+                    <p>Command Caesar, Wu Zetian, and other immortal deities</p>
                 </div>
                 <div class="swiper-slide feature-card">
                     <div class="feature-img">
                         <img src="source/3.webp" alt="游戏特色2">
                     </div>
-                    <h3>巨龙觉醒</h3>
-                    <p>驾驭七系元素龙扭转战局</p>
+                    <!-- <h3>Castle Building</h3> -->
+                    <p>Build a strong castle to defend against enemy attacks</p>
                 </div>
                 <div class="swiper-slide feature-card">
                     <div class="feature-img">
                         <img src="source/4.webp" alt="游戏特色3">
                     </div>
-                    <h3>闪电攻城</h3>
-                    <p>百城实时争夺无CD</p>
+                    <!-- <h3>闪电攻城</h3> -->
+                    <p>Harness the power of the seven elemental dragons to turn the tide of battle</p>
                 </div>
                 <div class="swiper-slide feature-card">
                     <div class="feature-img">
                         <img src="source/5.webp" alt="游戏特色3">
                     </div>
-                    <h3>闪电攻城</h3>
-                    <p>百城实时争夺无CD</p>
+                    <!-- <h3>闪电攻城</h3> -->
+                    <p>Besiege castles, plunder resources, claim the crown, and conquer ultimate supremacy</p>
                 </div>
             </div>
             <!-- 移除分页器 -->
@@ -513,7 +566,7 @@ body {
     </section>
 
     <!-- 固定底部联系栏 -->
-    <div class="contact-bar">
+    <div class="contact-bar bottom-bar">
         <div class="contact-title">MESSAGE US TO CLAIM</div>
         <div class="contact-icons">
             <a href="https://wa.me/" class="icon whatsapp" target="_blank">
@@ -530,13 +583,16 @@ body {
 
     <!-- 尾屏：二次召唤 -->
     <section class="footer-section">
+        <div class="hero-image-container">
+            <img src="source/text3.png" alt="Hero Image">
+        </div>
         <div class="urgent-title">⚠️ LAST CHANCE!</div>
-        <div>Your $388 Pack expires in:</div>
+        <div style="margin-top: 5px;font-size: 1.2rem;">Your $388 Pack expires in:</div>
         <div class="final-countdown">00:09:31</div>
-        <button class="claim-btn">🔥 REQUEST GIFT NOW</button>
+        <button class="claim-btn">👇 REQUEST GIFT NOW</button>
 
-        <div style="margin-top: 20px; font-size: 1.2rem;">
-            160万玩家正在争夺霸权——立即参战！
+        <div style="margin-top: 20px; font-size: 1.1rem;">
+            5.6 Million Players Battling for Supremacy</br>Join Now
         </div>
 
     </section>
@@ -589,7 +645,32 @@ body {
                 }
             }
         });
+
+        function openGiftPopup() {
+            const contactBar = document.querySelector('.bottom-bar');
+            if (contactBar) {
+                contactBar.style.display = 'none'; 
+            }
+            const popup = document.querySelector('.gift-popup');
+            if (popup) {
+                popup.style.display = 'block';
+                popup.style.zIndex = '9999';
+            }
+        }
+
+        function closeGiftPopup() {
+           const contactBar = document.querySelector('.bottom-bar');
+            if (contactBar) {
+                contactBar.style.display = 'flex';
+            }
+            const popup = document.querySelector('.gift-popup');
+            if (popup) {
+                popup.style.display = 'none';
+            }
+            
+        }
     </script>
+    
 </body>
 
 </html>
@@ -613,26 +694,32 @@ body {
     // 添加弹窗控制逻辑
     document.addEventListener('DOMContentLoaded', function () {
         const popup = document.querySelector('.gift-popup');
-        let hasShown = sessionStorage.getItem('popupShown');
+        const giftBottom = document.querySelector('.bottom-bar');
+        // let hasShown = sessionStorage.getItem('popupShown');
 
-        // 3秒后显示弹窗
-        if (!hasShown) {
+        // // 3秒后显示弹窗
+        // if (!hasShown) {
             setTimeout(() => {
                 popup.style.display = 'block';
-                setTimeout(() => popup.style.opacity = '1', 10);
-                sessionStorage.setItem('popupShown', 'true');
-            }, 3000);
-        }
-
-        // 点击按钮滚动到联系方式
-        document.querySelectorAll('.claim-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                document.querySelector('.contact-bar').scrollIntoView({
-                    behavior: 'smooth'
+                giftBottom.style.display = 'none';
+                setTimeout(() => {
+                    popup.style.opacity = '1', 10;
+                    popup.style.zIndex = '9999';
                 });
-            });
-        });
+                sessionStorage.setItem('popupShown', 'true');
+               
+            }, 3000);
+        // }
 
+        // // 点击按钮滚动到联系方式
+        // document.querySelectorAll('.claim-btn').forEach(btn => {
+        //     btn.addEventListener('click', function () {
+        //         document.querySelector('.contact-bar').scrollIntoView({
+        //             behavior: 'smooth'
+        //         });
+        //     });
+        // });
+        let timerInterval;
         const displayElements = [
             document.getElementById('timer'),
             document.querySelector('.final-countdown')
@@ -666,7 +753,8 @@ body {
         updateCountdown();
 
         // 每秒更新
-        const timerInterval = setInterval(updateCountdown, 1000);
+        timerInterval = setInterval(updateCountdown, 1000);
+        
     });
 </script>
 
@@ -678,6 +766,7 @@ body {
         height: auto;
         background-image: url('source/bg_2.jpg'); /* 添加url()包裹路径 */
         background-size: cover; 
+        margin-bottom: 10px;
     }
 
     #bg-video {
@@ -727,9 +816,9 @@ body {
     /* 修改游戏特色滑动区样式 */
     .feature-img {
         width: 100%;
-        height: 200px;
+        height: 240px;
         border-radius: 10px;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
         overflow: hidden;
         /* 添加溢出隐藏 */
         position: relative;
@@ -745,18 +834,8 @@ body {
         /* 确保图片作为块元素显示 */
     }
 
-    /* 调整卡片内边距 */
-    .feature-card {
-        padding: 0 0 20px 0;
-        /* 调整内边距 */
-    }
-
-    .feature-card h3 {
-        padding: 15px 20px 5px;
-    }
-
     .feature-card p {
-        padding: 0 20px 15px;
+        padding: 0 10px 10px;
     }
 </style>
 
@@ -765,10 +844,12 @@ body {
     .contact-bar {
         position: fixed;
         bottom: 0;
-        left: 0;
+        left: 50%;
+        transform: translateX(-50%);
         width: 100%;
+        max-width: 750px;
         background: rgba(0, 0, 0, 0.8);
-        padding: 15px;
+        padding: 10px;
         z-index: 100;
         display: flex;
         flex-direction: column;
